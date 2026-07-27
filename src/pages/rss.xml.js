@@ -1,5 +1,6 @@
 import { getCollection } from 'astro:content';
 import rss from '@astrojs/rss';
+import { deriveExcerpt } from '../lib/excerpt.ts';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 export async function GET(context) {
@@ -11,7 +12,7 @@ export async function GET(context) {
 		items: posts.map((post) => ({
 			title: post.data.title,
 			pubDate: post.data.date,
-			description: post.data.excerpt,
+			description: post.data.excerpt ?? deriveExcerpt(post.body ?? ''),
 			link: `/${post.data.slug}/`,
 		})),
 	});
