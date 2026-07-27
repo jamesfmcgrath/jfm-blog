@@ -13,7 +13,9 @@ A function is like a recipe. You write it once and then reuse it to get the same
 In code, it might look like this:
 
 ```
-function sayHello() {  console.log("Hello, world!");}
+function sayHello() {
+  console.log("Hello, world!");
+}
 ```
 
 You just:  
@@ -33,7 +35,9 @@ Functions keep your code clean, reusable, and organized. Instead of repeating yo
 Write a function that says something about you! Like:
 
 ```
-function aboutMe() {  console.log("I love coffee and coding!");}
+function aboutMe() {
+  console.log("I love coffee and coding!");
+}
 ```
 
 Call it and see the magic happen.
@@ -47,5 +51,4 @@ A function is your own custom button. Press it, and something happens. It could 
 
 [Subscribe to my feed](https://jamesfmcgrath.org/feed/) to follow along. I’ll keep the lessons short and sweet.
 
-[Ctrl + Alt + Learn – Day 1: What Is a Variable?  
-](https://jamesfmcgrath.org/wp-content/uploads/2025/07/ChatGPT-Image-Jul-17-2025-08_29_50-AM.png)
+[Ctrl + Alt + Learn – Day 1: What Is a Variable?](/ctrl-alt-learn-day-1-variable/)

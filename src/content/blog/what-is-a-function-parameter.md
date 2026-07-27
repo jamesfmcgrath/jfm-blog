@@ -10,7 +10,11 @@ excerpt: "Learn how function parameters work in JavaScript. This beginner-friend
 A parameter is a placeholder in a function — like a blank to fill in when you call it.
 
 ```
-function greet(name) {  console.log("Hello, " + name + "!");}greet("Riley");
+function greet(name) {
+  console.log("Hello, " + name + "!");
+}
+
+greet("Riley");
 ```
 
 This outputs: `Hello, Riley!`  
@@ -25,7 +29,11 @@ Parameters make your functions flexible. One function can handle all kinds of in
 Write a function with a parameter for a favorite food:
 
 ```
-function sayFavorite(food) {  console.log("I love " + food + "!");}sayFavorite("ramen");
+function sayFavorite(food) {
+  console.log("I love " + food + "!");
+}
+
+sayFavorite("ramen");
 ```
 
 ### 🧠 Fun Analogy:

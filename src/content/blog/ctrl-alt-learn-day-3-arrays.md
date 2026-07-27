@@ -31,7 +31,8 @@ Make an array with:
 Example:
 
 ```
-let favorites = ["pizza", "sushi", "tacos"];console.log(favorites[1]); // sushi
+let favorites = ["pizza", "sushi", "tacos"];
+console.log(favorites[1]); // sushi
 ```
 
 🧠 **Fun Analogy:**  

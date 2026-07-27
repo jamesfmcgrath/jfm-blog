@@ -10,7 +10,8 @@ excerpt: "Learn what console.log() does in JavaScript, how to use it to debug yo
 `console.log()` is a way to **print messages to the console** — kind of like writing sticky notes to yourself while coding. It shows you what’s happening inside your program.
 
 ```
-let name = "Jamie";console.log(name); // Jamie
+let name = "Jamie";
+console.log(name); // Jamie
 ```
 
 This will print `Jamie` to the browser’s console — a space where developers can debug and check what their code is doing.
@@ -24,7 +25,9 @@ This will print `Jamie` to the browser’s console — a space where developers 
 Try logging three things:
 
 ```
-console.log("Hello world!");console.log(5 + 7);console.log(true);
+console.log("Hello world!");
+console.log(5 + 7);
+console.log(true);
 ```
 
 Watch what shows up in your browser’s console. You’re talking directly to your code.

@@ -1,5 +1,5 @@
 ---
-title: "Making the Most of RSS: Feeds to Follow &amp; Creative Uses"
+title: "Making the Most of RSS: Feeds to Follow & Creative Uses"
 date: 2025-03-14
 slug: "making-the-most-of-rss"
 ---

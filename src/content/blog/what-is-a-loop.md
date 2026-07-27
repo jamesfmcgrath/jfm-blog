@@ -12,7 +12,9 @@ A loop is a way to repeat code automatically. Instead of writing the same line o
 Here’s a basic `for` loop:
 
 ```
-for (let i = 0; i < 5; i++) {  console.log("Hi!");}
+for (let i = 0; i < 5; i++) {
+  console.log("Hi!");
+}
 ```
 
 This says:  
@@ -29,7 +31,9 @@ Loops help you work through lists, repeat actions, and save yourself from writin
 Write a loop that counts from 1 to 3 and logs the number:
 
 ```
-for (let i = 1; i <= 3; i++) {  console.log(i);}
+for (let i = 1; i <= 3; i++) {
+  console.log(i);
+}
 ```
 
 ### 🧠 Fun Analogy:

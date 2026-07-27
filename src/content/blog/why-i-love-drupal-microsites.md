@@ -1,5 +1,5 @@
 ---
-title: "Why I Love Drupal &amp; Microsites"
+title: "Why I Love Drupal & Microsites"
 date: 2025-02-11
 slug: "why-i-love-drupal-microsites"
 ---

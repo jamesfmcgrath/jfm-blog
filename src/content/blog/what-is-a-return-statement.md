@@ -10,7 +10,12 @@ excerpt: "Learn what a return statement is in JavaScript, how it works inside a 
 A `return` statement sends a value back from a function. Instead of just _doing_ something, the function gives you something _back_ — like a vending machine for code.
 
 ```
-function add(a, b) {  return a + b;}let sum = add(3, 4);console.log(sum); // 7
+function add(a, b) {
+  return a + b;
+}
+
+let sum = add(3, 4);
+console.log(sum); // 7
 ```
 
 Here, the function adds the numbers and **returns** the result. You can store that result, use it in other code, or pass it to something else.
@@ -24,7 +29,11 @@ Returning values lets your functions do more than just print things — they can
 Write a function that returns your favorite emoji:
 
 ```
-function getEmoji() {  return "🌈";}console.log(getEmoji()); // 🌈
+function getEmoji() {
+  return "🌈";
+}
+
+console.log(getEmoji()); // 🌈
 ```
 
 ### 🧠 Fun Analogy:

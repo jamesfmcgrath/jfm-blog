@@ -243,3 +243,114 @@ rm src/content/blog/fixture-one.md src/content/blog/fixture-two.md
 ```
 
 Committed content changes (see commit hash in the task report).
+
+---
+
+## Fix round 1 (post-review): content-quality defects the Step 4 grep missed
+
+Review found three classes of real defects that
+`grep -lE '\[[a-z_-]+[^]]*\]|<script|<iframe'` cannot catch, because none of
+them involve brackets, `<script>`, or `<iframe>`. All three are fixed below.
+
+### 1. Corrupted code blocks (9 posts)
+
+`wordpress-export-to-markdown@3.0.6` does not convert `<br>`/`<br/>`/`<br />`
+tags inside `<pre><code>` (WordPress "Preformatted" blocks) into newlines —
+it strips them, squishing multi-statement JS examples onto one unreadable
+line. For each affected post, I located the matching `<item>` in the raw
+`jamesmcgrath.WordPress.2026-07-27.xml` by `wp:post_name`, read the actual
+`<pre class="wp-block-preformatted"><code>...</code></pre>` block in
+`content:encoded`, and reconstructed real line breaks at each `<br>`,
+decoding any `&lt;`/`&gt;`/`&amp;` entities back to literal characters. Fixed
+files (all `src/content/blog/`), with every corrupted block in each file (in
+some cases more than the two lines originally reported):
+
+- `ctrl-alt-learn-day-2-functions.md` — two blocks (`sayHello`, `aboutMe`)
+- `ctrl-alt-learn-day-3-arrays.md` — one block (`favorites` array + log)
+- `what-is-a-boolean.md` — three blocks (`isSunny`/`hasUmbrella`,
+  `likesPizza`/`hasCat`, the `if (likesPizza)` block)
+- `what-is-a-function-parameter.md` — two blocks (`greet`, `sayFavorite`,
+  each restoring the blank line before the trailing call)
+- `what-is-a-loop.md` — two blocks (both `for` loops; entities `&lt;` were
+  already correctly decoded to `<` by the tool outside the `<br>` issue, so
+  only the missing newline needed fixing)
+- `what-is-a-return-statement.md` — two blocks (`add`, `getEmoji`, each
+  restoring the blank line before the trailing call)
+- `what-is-an-if-statement.md` — two blocks (`isRaining`, `favoriteColor`,
+  each restoring the blank line between the variable and the `if`)
+- `what-is-an-object.md` — two blocks (`person` object, `me` object + log)
+- `what-is-console-log.md` — two blocks (`name`/log, three `console.log`
+  calls)
+
+Verified via source diff against the original `content:encoded` for each of
+the 9 files — every reconstructed block now matches the `<br>`-delimited
+source line-for-line. A follow-up sweep,
+`grep -nE '\}[a-zA-Z]|;[a-zA-Z]' src/content/blog/*.md` (excluding URLs),
+found zero remaining squished lines across all 33 posts, confirming these 9
+were the complete set.
+
+### 2. Hotlinked WordPress media-library URL (`ctrl-alt-learn-day-2-functions.md`)
+
+The link text "Ctrl + Alt + Learn – Day 1: What Is a Variable?" pointed at
+`https://jamesfmcgrath.org/wp-content/uploads/2025/07/ChatGPT-Image-Jul-17-2025-08_29_50-AM.png`
+— an image URL on the old media library, not the intended post. Checked:
+`ctrl-alt-learn-day-1-variable.md` **does exist** among the 33 migrated
+posts (slug `ctrl-alt-learn-day-1-variable`, confirmed via
+`ls src/content/blog | grep -i day-1` and its frontmatter). Relinked to the
+local route `/ctrl-alt-learn-day-1-variable/` instead of downloading the
+hotlinked image — the author's original intent (link to the Day 1 post) is
+fully resolvable in this case, so no fallback image-download was needed.
+
+### 3. Undecoded HTML entities in frontmatter titles
+
+`wordpress-export-to-markdown`'s `title()` getter does not decode HTML
+entities. Fixed the two confirmed cases:
+
+- `making-the-most-of-rss.md`: `"Making the Most of RSS: Feeds to Follow
+  &amp; Creative Uses"` → `"Making the Most of RSS: Feeds to Follow &
+  Creative Uses"`
+- `why-i-love-drupal-microsites.md`: `"Why I Love Drupal &amp; Microsites"`
+  → `"Why I Love Drupal & Microsites"`
+
+Confirmed against the raw export (`<title><![CDATA[...&amp;...]]></title>`)
+that the source title genuinely contains a literal `&`, XML-escaped by
+WordPress's exporter even inside CDATA — not a stray entity to strip.
+
+Full sweep of all 33 posts' + 1 page's frontmatter `title` and `excerpt`
+fields for any other undecoded entity (named or numeric — `&amp;`, `&lt;`,
+`&gt;`, `&quot;`, `&nbsp;`, `&#8217;`, `&#8220;`/`&#8221;`,
+`&#8211;`/`&#8212;`, etc., via `grep -nE '&[#a-zA-Z0-9]+;'` against each
+file's frontmatter block) found no other occurrences. These two were the
+complete set.
+
+Note: after fixing the frontmatter to a literal `&`, the built HTML/RSS
+output correctly single-escapes it back to `&amp;` in the markup (e.g.
+`<title>Making the Most of RSS: Feeds to Follow &amp; Creative Uses</title>`
+in `dist/making-the-most-of-rss/index.html` and in `dist/rss.xml`) — that is
+correct XML/HTML serialization and renders as a single `&` character in a
+browser or feed reader. The bug being fixed was the frontmatter *source*
+containing the 5-character entity string, which without this fix would have
+been double-escaped by Astro's templating into visibly broken `&amp;amp;`
+in some contexts. Verified no `&amp;amp;` appears anywhere in the rebuilt
+`dist/`.
+
+### Verification
+
+`npm run build` after all fixes: exit 0, 35 pages generated (same as
+before — these were content-only fixes, no new/removed routes). Spot-checks
+against `dist/`:
+
+- `dist/ctrl-alt-learn-day-2-functions/index.html` — both code blocks now
+  render as separate `<span class="line">` entries (real line breaks); the
+  Day 1 link resolves to `href="/ctrl-alt-learn-day-1-variable/"` (also
+  matches the auto-generated prev/next post-nav link to the same post).
+- `dist/what-is-a-boolean/index.html` — code blocks render as separate
+  lines.
+- `dist/making-the-most-of-rss/index.html` and
+  `dist/why-i-love-drupal-microsites/index.html` — `<title>` and `<h1>`
+  both contain `&amp;` in the HTML source (correct single-encoding of a
+  literal `&`); `dist/rss.xml` likewise.
+
+No image-resolution warnings, no other build warnings.
+
+Commit: see task report for the fix-round commit hash.

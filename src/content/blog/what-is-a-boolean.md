@@ -12,7 +12,8 @@ A Boolean is a type of value that’s either `true` or `false`. That’s it — 
 Booleans are used to answer yes-or-no questions in code, like:
 
 ```
-let isSunny = true;let hasUmbrella = false;
+let isSunny = true;
+let hasUmbrella = false;
 ```
 
 These values are especially useful when making decisions with `if` statements or controlling logic in your program.
@@ -26,13 +27,16 @@ Booleans are the building blocks of logic in code. They help your program know w
 Try creating a couple of Boolean values about yourself:
 
 ```
-let likesPizza = true;let hasCat = false;
+let likesPizza = true;
+let hasCat = false;
 ```
 
 Then use one in an `if` statement:
 
 ```
-if (likesPizza) {  console.log("Same here 🍕");}
+if (likesPizza) {
+  console.log("Same here 🍕");
+}
 ```
 
 ### 🧠 Fun Analogy:

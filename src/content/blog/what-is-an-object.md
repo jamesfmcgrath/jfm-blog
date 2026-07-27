@@ -12,7 +12,11 @@ An object is like a mini file folder. You can pack it with labelled facts about 
 In JavaScript:
 
 ```
-let person = {  name: "Riley",  age: 30,  loves: "hiking"};
+let person = {
+  name: "Riley",
+  age: 30,
+  loves: "hiking"
+};
 ```
 
 Now you’ve created an object with **properties** — bits of information tied to keys like `name`, `age`, and `loves`.
@@ -32,7 +36,13 @@ Objects let you group related info together. They’re super useful when you wan
 Make your own object about… you!
 
 ```
-let me = {  name: "Jamie",  favoriteColor: "green",  isCool: true};console.log(me.favoriteColor);
+let me = {
+  name: "Jamie",
+  favoriteColor: "green",
+  isCool: true
+};
+
+console.log(me.favoriteColor);
 ```
 
 ### 🧠 Fun Analogy:

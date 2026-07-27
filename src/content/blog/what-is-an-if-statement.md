@@ -10,7 +10,11 @@ excerpt: "Learn how if statements work in JavaScript, including how to write the
 An `if` statement lets your code make decisions. It checks whether something is true — and if it is, it runs some code.
 
 ```
-let isRaining = true;if (isRaining) {  console.log("Take an umbrella!");}
+let isRaining = true;
+
+if (isRaining) {
+  console.log("Take an umbrella!");
+}
 ```
 
 The code inside the `{ }` only runs _if_ the condition is true.
@@ -24,7 +28,11 @@ Conditional logic is everywhere — websites, apps, games. It lets your program 
 Write a basic `if` statement that checks your favourite colour:
 
 ```
-let favoriteColor = "green";if (favoriteColor === "green") {  console.log("Nice choice!");}
+let favoriteColor = "green";
+
+if (favoriteColor === "green") {
+  console.log("Nice choice!");
+}
 ```
 
 ### 🧠 Fun Analogy:
