@@ -354,3 +354,79 @@ against `dist/`:
 No image-resolution warnings, no other build warnings.
 
 Commit: see task report for the fix-round commit hash.
+
+---
+
+## Fix round 2 (post-review): 10th file with the same root-cause bug
+
+A follow-up re-review found a 10th file affected by the same root cause as
+fix round 1 (the converter's mishandling of `<br>` inside WordPress
+"Preformatted" blocks), but shaped differently:
+
+### `ctrl-alt-learn-day-1-variable.md`
+
+In the raw export, this post's second code example is itself malformed
+HTML — the code text sits **outside** the `<code>` tag entirely, with a
+stray trailing `<code><br></code>`:
+
+```html
+<pre class="wp-block-preformatted">let myName = "Jamie";<br>let favoriteNumber = 42;<br>let favoriteThing = "ramen";<code><br></code></pre>
+```
+
+Because there was no `<pre><code>` pairing for the converter to treat as a
+fenced code block, it fell back to treating this as a plain paragraph
+instead of squishing it onto one line (round 1's failure mode). The result
+was readable but wrong: a plain-text paragraph with hard line breaks
+(`  ` + newline, i.e. Markdown's two-space break) instead of a code block,
+plus a visible artifact from the stray `<code><br></code>` — an inline-code
+chip containing just whitespace, rendered as `` `   ` `` trailing the last
+statement.
+
+Fixed by replacing the three-line plain paragraph with a proper fenced code
+block, matching the plain ` ``` ` fence style (no language tag) used
+everywhere else in this same file and in all 9 files fixed in round 1 —
+consistency with the established convention took precedence over the
+literal ` ```js ` suggestion in the review note, since the actual goal
+("match how the other files' examples look") is a plain fence:
+
+```
+let myName = "Jamie";
+let favoriteNumber = 42;
+let favoriteThing = "ramen";
+```
+
+The stray empty inline-code artifact was removed entirely.
+
+### Broader sweep for an 11th file
+
+Wrote a one-off script (using the project's existing `xml2js` dependency,
+not committed) that regex-matches every `<pre[^>]*>...</pre>` block across
+all 33 posts' raw `content:encoded` and flags any block containing a `<br>`
+tag anywhere inside it — not just inside `<pre><code>`, to catch malformed
+variants like this one. Result: **exactly 19 matching blocks across exactly
+10 files** — the same 9 files and 18 blocks fixed in round 1, plus this one
+block in `ctrl-alt-learn-day-1-variable`. No 11th file exists; the sweep is
+now exhaustive and confirms all `<br>`-in-`<pre>` defects (in any shape) are
+fixed.
+
+### Verification
+
+```
+$ npm run build
+...
+[build] 35 page(s) built in 896ms
+[build] Complete!
+BUILD EXIT: 0
+```
+
+```
+$ grep -B1 -A5 "let myName" dist/ctrl-alt-learn-day-1-variable/index.html
+<p><strong>Challenge:</strong> Write three variables: your name, your favourite number, and something you love.</p>
+<pre class="astro-code github-dark" ...><code><span class="line"><span>let myName = "Jamie";</span></span>
+<span class="line"><span>let favoriteNumber = 42;</span></span>
+<span class="line"><span>let favoriteThing = "ramen";</span></span></code></pre>
+```
+
+Proper multi-line code block, no stray empty `<code>` tag anywhere in the
+rebuilt file (`grep -c '<code>   </code>\|<code></code>'` → 0). No new build
+warnings.

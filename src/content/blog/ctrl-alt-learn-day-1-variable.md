@@ -21,9 +21,11 @@ Why do we care? Because variables are everywhere. They help us hold and reuse in
 
 **Challenge:** Write three variables: your name, your favourite number, and something you love.
 
-let myName = "Jamie";  
-let favoriteNumber = 42;  
-let favoriteThing = "ramen";`   `
+```
+let myName = "Jamie";
+let favoriteNumber = 42;
+let favoriteThing = "ramen";
+```
 
 🧠 _If your brain is a kitchen, variables are the labelled jars on the shelves._
 
