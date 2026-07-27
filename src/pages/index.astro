@@ -1,8 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import { deriveExcerpt } from '../lib/excerpt.ts';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+	.slice(0, 4);
 ---
 <html lang="en">
 	<head>
@@ -11,8 +18,63 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	<body>
 		<Header />
 		<main id="main" tabindex="-1">
-			<p>{SITE_DESCRIPTION}</p>
+			<h1 class="sr-only">{SITE_TITLE}</h1>
+			<section class="intro">
+				<p>{SITE_DESCRIPTION}</p>
+			</section>
+			<section aria-label="Recent posts">
+				{posts.map((post) => (
+					<article class="post-preview">
+						<h2><a href={`/${post.data.slug}/`}>{post.data.title}</a></h2>
+						<p class="meta"><FormattedDate date={post.data.date} /></p>
+						<p class="excerpt">{post.data.excerpt ?? deriveExcerpt(post.body ?? '')}</p>
+					</article>
+				))}
+				<a href="/blog/" class="view-all">View all posts &rarr;</a>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+<style>
+	main {
+		padding: 0 8vw 0 10vw;
+		max-width: 640px;
+	}
+	.intro {
+		padding-top: 64px;
+	}
+	.intro p {
+		font-family: var(--font-zen-kaku);
+		font-size: 14px;
+		color: var(--muted);
+		margin: 0 0 64px 0;
+	}
+	.post-preview {
+		padding: 36px 0;
+		border-top: 1px solid var(--border);
+	}
+	.post-preview h2 {
+		font-size: 22px;
+		margin: 0 0 10px 0;
+	}
+	.post-preview .meta {
+		font-family: var(--font-zen-kaku);
+		font-size: 13px;
+		color: var(--muted);
+		margin: 0 0 12px 0;
+	}
+	.post-preview .excerpt {
+		margin: 0;
+		color: var(--muted);
+		max-width: 62ch;
+	}
+	.view-all {
+		display: block;
+		font-family: var(--font-zen-kaku);
+		font-size: 15px;
+		color: var(--accent);
+		padding: 32px 0 80px 0;
+		border-top: 1px solid var(--border);
+	}
+</style>
