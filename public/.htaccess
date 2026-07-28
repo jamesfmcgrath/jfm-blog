@@ -31,11 +31,7 @@ RedirectMatch 301 ^/ctrl-alt-learn-day-2-functions/cal-day2/$ /
 RedirectMatch 301 ^/ctrl-alt-learn-day-3-arrays/cal-day3/$ /
 RedirectMatch 301 ^/what-is-an-object/cal-day4/$ /
 RedirectMatch 301 ^/ctrl-alt-learn-day-0/img_7612/$ /
-RedirectMatch 301 ^/what-is-a-loop/$ /
 RedirectMatch 301 ^/what-is-an-if/$ /
-RedirectMatch 301 ^/what-is-a-function-parameter/$ /
-RedirectMatch 301 ^/what-is-a-return-statement/$ /
-RedirectMatch 301 ^/what-is-a-boolean/$ /
 RedirectMatch 301 ^/chatgpt-image-jul-28-2025-01_18_42-pm/$ /
 RedirectMatch 301 ^/learn-javascript-for-beginners/learn-javascript-for-beginners-2/$ /
 RedirectMatch 301 ^/localgov-drupal-week-recap-hope/agile-coop_2/$ /

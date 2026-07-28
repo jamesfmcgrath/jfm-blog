@@ -5,8 +5,46 @@ export async function buildRedirects(xmlString) {
 	const parsed = await xml2js.parseStringPromise(xmlString);
 	const items = parsed.rss.channel[0].item ?? [];
 
+	// Collect all post and page (post_id 1039) permalinks to avoid collisions
+	const postPermalinks = new Set();
+	items.forEach((item) => {
+		const postType = item['wp:post_type']?.[0];
+		const postId = item['wp:post_id']?.[0];
+		const link = item.link?.[0];
+
+		// Include posts and the one kept page (post_id 1039)
+		if ((postType === 'post' || (postType === 'page' && postId === '1039')) && link) {
+			try {
+				const path = new URL(link).pathname;
+				postPermalinks.add(path);
+			} catch {
+				// Skip items with invalid links
+			}
+		}
+	});
+
 	const lines = items
-		.filter((item) => item['wp:post_type']?.[0] === 'attachment')
+		.filter((item) => {
+			const postType = item['wp:post_type']?.[0];
+			const link = item.link?.[0];
+
+			// Skip if not an attachment
+			if (postType !== 'attachment') return false;
+
+			// Skip if missing link (defensive handling)
+			if (!link) return false;
+
+			try {
+				const path = new URL(link).pathname;
+				// Skip if this attachment's link collides with a post/page permalink
+				if (postPermalinks.has(path)) return false;
+
+				return true;
+			} catch {
+				// Skip items with invalid links
+				return false;
+			}
+		})
 		.map((item) => {
 			const link = item.link?.[0];
 			const path = new URL(link).pathname;
