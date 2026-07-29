@@ -2,6 +2,7 @@
 title: "Right-Sizing Government Websites: Choosing the Right Architecture for the Job"
 date: 2025-02-18
 slug: "right-sizing-government-websites"
+image: "./images/DALL·E-2025-02-18-09.39.52-An-abstract-digital-illustration-representing-the-concept-of-scalable-and-flexible-web-architecture.-The-image-should-feature-interconnected-geometric.webp"
 ---
 
 Right-sizing government websites is one of the biggest challenges for digital teams. Should everything live within one large portal, or do microsites provide a better user experience? The answer isn’t one-size-fits-all—it depends on the audience, content, and technology powering the site.
@@ -20,7 +21,7 @@ So, how do we decide what’s best for a given project? And where does Drupal fi
 
 * * *
 
-### Picking the Right Tool for the Job
+## Picking the Right Tool for the Job
 
 The **monolithic CMS** (Drupal’s traditional model) still has a strong place in government websites, particularly for large content-heavy portals that require accessibility, security, and long-term stability.
 
@@ -47,7 +48,7 @@ This flexibility means we no longer have to choose between **one massive site or
 
 * * *
 
-### The Role of Drupal CMS and the Shift to Simplicity
+## The Role of Drupal CMS and the Shift to Simplicity
 
 One of the biggest blockers to adopting **modern web architecture in Drupal** has been complexity. While frameworks like Next.js, Astro, and SvelteKit have made decoupling easier, Drupal has historically required significant **developer resources** to manage even basic implementations.
 
@@ -57,7 +58,7 @@ If Drupal can evolve to support **easier deployment**, **lower hosting costs**, 
 
 * * *
 
-### Looking Ahead: Where Do We Go from Here?
+## Looking Ahead: Where Do We Go from Here?
 
 The conversation about **right-sizing government websites** is really about **right-sizing architecture**—not just for government, but for any organization managing large-scale digital experiences.
 
@@ -73,7 +74,7 @@ The key takeaway? **We don’t need to choose between monolithic and decoupled, 
 
 * * *
 
-### Final Thoughts: A Call for Simplicity and Strategy
+## Final Thoughts: A Call for Simplicity and Strategy
 
 Drupal has always been powerful. The challenge now is making that power more **accessible**—both for developers and non-developers alike.
 
@@ -81,7 +82,7 @@ Where do you see things heading? Are we moving toward **more flexibility in gove
 
 * * *
 
-### Call to Action for Engagement
+## Call to Action for Engagement
 
 - **Share your thoughts in the comments.** What’s your experience with balancing large portals, microsites, and decoupled architectures?
 

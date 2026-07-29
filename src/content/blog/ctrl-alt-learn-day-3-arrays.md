@@ -2,6 +2,7 @@
 title: "What Is an Array?"
 date: 2025-07-21
 slug: "ctrl-alt-learn-day-3-arrays"
+image: "./images/cal-day3.png"
 excerpt: "Learn what an array is in JavaScript, how to use one, and why they’re so useful. It’s Day 3 of the beginner-friendly Ctrl + Alt + Learn series."
 ---
 

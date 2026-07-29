@@ -2,6 +2,7 @@
 title: "Can Drupal’s Professional Ecosystem Survive Its Current Challenges?"
 date: 2025-06-09
 slug: "drupal-ecosystem-at-a-crossroads"
+image: "./images/drupal-crossroads.png"
 ---
 
 Drupal remains the backbone of many government and public sector websites. The CMS itself is thriving. Recent innovations like Starshot, Recipes, and Project Browser show how active and forward-looking the community continues to be.
@@ -10,7 +11,7 @@ Yet, in the past six months, I have watched several well-established, well-regar
 
 We are seeing a strange paradox. The open source project is strong, but the professional ecosystem is shrinking.
 
-### Why is this happening?
+## Why is this happening?
 
 Several forces are converging.
 
@@ -24,7 +25,7 @@ Several forces are converging.
 
 - **Talent pipeline drying up.** Fewer junior Drupal roles are being created. Fewer agencies can afford to train new developers.
 
-### Can Drupal grow in this climate?
+## Can Drupal grow in this climate?
 
 A free CMS is a fantastic achievement. But without a sustainable commercial ecosystem, with agencies, freelancers, and in-house teams making a living, growth becomes difficult.
 
@@ -38,7 +39,7 @@ For Drupal to thrive long term, we need:
 
 - Clear positioning in today’s web ecosystem
 
-### Where do we go from here?
+## Where do we go from here?
 
 I am encouraged by what the community is doing, especially the focus on simplifying adoption and lowering the barrier to entry.
 
@@ -46,7 +47,7 @@ But we also need to look squarely at the realities of today’s digital market.
 
 Here are some practical ways agency owners, freelancers, and Drupal professionals might adapt right now.
 
-### 1\. Focus on Drupal’s strengths
+## 1\. Focus on Drupal’s strengths
 
 Drupal shines for:
 
@@ -64,7 +65,7 @@ Drupal shines for:
 
 We should lean into these strengths, not try to compete with no-code platforms for simple sites.
 
-### 2\. Help clients understand “why Drupal?”
+## 2\. Help clients understand “why Drupal?”
 
 Do not assume clients already know Drupal’s value. Articulate the case.
 
@@ -78,7 +79,7 @@ Do not assume clients already know Drupal’s value. Articulate the case.
 
 - Community-driven innovation (instead of vendor lock-in)
 
-### 3\. Experiment with new business models
+## 3\. Experiment with new business models
 
 - Maintenance and support as a service (subscription based)
 
@@ -88,7 +89,7 @@ Do not assume clients already know Drupal’s value. Articulate the case.
 
 - Partnerships and white-label work
 
-### 4\. Invest in the talent pipeline
+## 4\. Invest in the talent pipeline
 
 - Mentor juniors and new contributors
 
@@ -98,7 +99,7 @@ Do not assume clients already know Drupal’s value. Articulate the case.
 
 Without new talent, the ecosystem will age and contract.
 
-### 5\. Collaborate across the community
+## 5\. Collaborate across the community
 
 This is not the time for agency silos. The Drupal ecosystem is stronger when small agencies, freelancers, and large shops share knowledge and opportunities.
 
@@ -110,7 +111,7 @@ This is not the time for agency silos. The Drupal ecosystem is stronger when sma
 
 - Build regional networks
 
-### Final thoughts
+## Final thoughts
 
 I remain an optimist about Drupal’s future, but also a realist.
 

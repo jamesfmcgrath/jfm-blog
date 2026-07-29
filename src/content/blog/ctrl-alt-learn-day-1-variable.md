@@ -2,10 +2,11 @@
 title: "What Is a Variable?"
 date: 2025-07-17
 slug: "ctrl-alt-learn-day-1-variable"
+image: "./images/ChatGPT-Image-Jul-17-2025-08_29_50-AM.png"
 excerpt: "Learn what a variable is in JavaScript, why it matters, and how to write one — in this fun beginner-friendly post from the Ctrl + Alt + Learn series."
 ---
 
-### What Is a Variable?
+## What Is a Variable?
 
 A variable is like a labelled jar in your brain’s kitchen. You use it to store something for later — a number, a word, or even a list. In JavaScript, it looks like this:
 

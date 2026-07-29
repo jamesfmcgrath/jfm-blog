@@ -2,6 +2,7 @@
 title: "What Makes a Great Team (Hint: It’s Not Just the Code)"
 date: 2025-03-28
 slug: "what-makes-a-great-team"
+image: "./images/ChatGPT-Image-Mar-28-2025-05_08_31-PM.png"
 ---
 
 We often talk about speed, performance, and clean code in tech. But after working on many projects, I've realized that what makes a great team has little to do with code alone — and everything to do with the people behind it.

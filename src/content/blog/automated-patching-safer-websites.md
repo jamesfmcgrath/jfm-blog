@@ -2,6 +2,7 @@
 title: "Automated Patching: Safer Websites Without the Hassle"
 date: 2025-12-08
 slug: "automated-patching-safer-websites"
+image: "./images/quiet-protection.png"
 excerpt: "Discover how small, unnoticed website security updates keep your public-facing site secure. Learn about proactive steps for clients and developers to ensure automatic protection."
 ---
 

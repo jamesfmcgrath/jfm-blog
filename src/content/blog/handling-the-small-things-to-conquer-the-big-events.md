@@ -2,6 +2,7 @@
 title: "Handling the Small Things to Conquer the Big Events"
 date: 2025-02-04
 slug: "handling-the-small-things-to-conquer-the-big-events"
+image: "./images/DALL·E-2025-02-18-10.31.42-An-abstract-digital-artwork-representing-the-concept-of-tackling-big-challenges-through-small-details.-The-image-should-feature-interconnected-geometr.webp"
 ---
 
 It's been a big week—significant world events, big projects, big data, and big ideas. It can be overwhelming to wrap your head around it all. The Monday morning to-do list is long and detailed. Where do I begin?

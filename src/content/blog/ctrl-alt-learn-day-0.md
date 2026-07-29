@@ -2,6 +2,7 @@
 title: "Learn - Day 0"
 date: 2025-07-16
 slug: "ctrl-alt-learn-day-0"
+image: "./images/IMG_7612-scaled.jpeg"
 ---
 
 Not everyone grew up coding in their teens.  

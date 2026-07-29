@@ -2,6 +2,7 @@
 title: "Drupal AI Initiative: A Lifeline for the Professional Ecosystem?"
 date: 2025-06-18
 slug: "drupal-ai-initiative-opportunity"
+image: "./images/drupally-robot.png"
 ---
 
 Last week, I wrote about [the challenges facing Drupal's professional ecosystem](https://jamesfmcgrath.org/drupal-ecosystem-at-a-crossroads/). The paradox I highlighted, a thriving open source project alongside a shrinking commercial ecosystem, struck a chord with many of you.
@@ -10,7 +11,7 @@ Recently, [Dries Buytaert](https://dri.es/) announced the [Drupal AI Initiative]
 
 Could AI be the catalyst that revitalizes Drupal's professional ecosystem?
 
-### The Perfect Storm Meets the Perfect Solution?
+## The Perfect Storm Meets the Perfect Solution?
 
 The challenges I outlined last week, tightening budgets, longer sales cycles, perceived complexity, and a shrinking talent pipeline, aren't going away on their own. But the AI initiative addresses several of these pain points directly.
 
@@ -22,7 +23,7 @@ The challenges I outlined last week, tightening budgets, longer sales cycles, pe
 
 **Differentiated positioning.** Instead of competing with Squarespace on simplicity, Drupal can now compete on intelligence. This creates a clearer separation between commodity website builders and professional-grade solutions.
 
-### The Business Case for AI-Powered Drupal
+## The Business Case for AI-Powered Drupal
 
 The scenario Dries painted, a marketer uploading brand guidelines and watching AI generate optimized campaign pages, isn't just technically impressive. It's economically transformative.
 
@@ -44,7 +45,7 @@ The scenario Dries painted, a marketer uploading brand guidelines and watching A
 
 - **Competitive advantage**: Intelligent digital experiences that adapt to user behavior
 
-### The Talent Pipeline Problem Gets Easier
+## The Talent Pipeline Problem Gets Easier
 
 One of my biggest concerns was the shrinking talent pipeline. AI doesn't solve this entirely, but it does change the equation.
 
@@ -58,7 +59,7 @@ When junior developers can accomplish more with AI assistance, agencies can:
 
 This could reopen pathways for new talent that have been closed for years.
 
-### Real Business Models Are Emerging
+## Real Business Models Are Emerging
 
 The AI initiative isn't just about cool demos. I see concrete business opportunities:
 
@@ -70,7 +71,7 @@ The AI initiative isn't just about cool demos. I see concrete business opportuni
 
 **AI consulting services**: Helping organizations understand how to leverage Drupal's AI capabilities strategically.
 
-### **The Risks We** **Need to Watch**
+## **The Risks We** **Need to Watch**
 
 This isn't guaranteed success. Several risks could derail the opportunity:
 
@@ -82,7 +83,7 @@ This isn't guaranteed success. Several risks could derail the opportunity:
 
 **Market timing**: Other platforms are also integrating AI. Drupal needs to move fast enough to maintain a competitive advantage.
 
-### What This Means for Drupal Professionals
+## What This Means for Drupal Professionals
 
 If you're running a Drupal agency or working as a freelancer, here's how to position yourself:
 
@@ -94,7 +95,7 @@ If you're running a Drupal agency or working as a freelancer, here's how to posi
 
 **Focus on strategy and outcomes.** As AI handles more implementation, human value shifts to strategic thinking, user experience design, and business alignment.
 
-### The Bigger Question
+## The Bigger Question
 
 The Drupal AI Initiative represents more than technical innovation. It's a bet on a fundamentally different future for web development, one where success is measured by business outcomes rather than technical complexity.
 

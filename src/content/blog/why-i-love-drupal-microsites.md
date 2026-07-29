@@ -2,6 +2,7 @@
 title: "Why I Love Drupal & Microsites"
 date: 2025-02-11
 slug: "why-i-love-drupal-microsites"
+image: "./images/DALL·E-2025-02-18-10.21.06-An-abstract-digital-artwork-representing-the-concept-of-microsites-in-web-development.-The-image-features-interconnected-glowing-nodes-and-lines-symb.webp"
 ---
 
 Drupal Microsites are powerful ways to create **focused, user-centered digital experiences**. They allow organizations to deliver targeted content efficiently without the complexity of managing a full-scale website.

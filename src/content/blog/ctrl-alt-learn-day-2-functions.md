@@ -2,10 +2,11 @@
 title: "What Is a Function?"
 date: 2025-07-18
 slug: "ctrl-alt-learn-day-2-functions"
+image: "./images/cal-day2.png"
 excerpt: "Learn what a function is in JavaScript, how to write one, and why it’s a key part of programming. Day 2 of the Ctrl + Alt + Learn series is here!"
 ---
 
-### What Is a Function?
+## What Is a Function?
 
 🧪 **Concept:**  
 A function is like a recipe. You write it once and then reuse it to get the same result — or tweak it to serve different ingredients.

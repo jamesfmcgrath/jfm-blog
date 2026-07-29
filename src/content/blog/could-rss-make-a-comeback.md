@@ -2,6 +2,7 @@
 title: "Could RSS Make a Comeback? A Look at Its Potential Revival"
 date: 2025-03-03
 slug: "could-rss-make-a-comeback"
+image: "./images/DALL·E-2025-02-25-11.11.31-An-abstract-digital-illustration-representing-RSS-revival.-The-image-features-an-orange-RSS-feed-icon-emerging-from-a-futuristic-glowing-network-of-i.webp"
 ---
 
 A recent **LinkedIn comment** got me thinking about something I hadn't considered in a while: **RSS feeds**. The commenter reflected on how **Drupal 7** had RSS tools baked into various system parts—**views, nodes, and taxonomy pages**—making it easy to syndicate content.
@@ -10,9 +11,9 @@ But over the years, RSS faded from mainstream use, overshadowed by **social medi
 
 That raises an interesting question:
 
-### Could RSS be "reborn"—like QR codes?
+## Could RSS be "reborn"—like QR codes?
 
-#### A Brief History of RSS
+### A Brief History of RSS
 
 For those who weren't deep into web syndication in the early 2000s, **RSS (Really Simple Syndication)** was a way to subscribe to blogs, news sites, and forums. Instead of **relying on platforms to deliver content**, users could follow sites directly in their **RSS reader**—no ads, no manipulation, just pure content.
 
@@ -24,7 +25,7 @@ It was the foundation of **early internet content consumption**, where people ha
 
 - **RSS wasn't flashy** – A small orange icon never stood a chance against algorithmically boosted viral content and dopamine-fueled infinite scrolling.
 
-#### Is RSS Making a Comeback?
+### Is RSS Making a Comeback?
 
 Despite its decline, **RSS never truly disappeared**. Some of us never stopped using it. **I still use Feedly,** and it works well for my needs. It delivers only the content I care about—**no ads, algorithms, or distractions**.
 
@@ -38,7 +39,7 @@ And today, **there are real signs of an RSS resurgence**:
 
 ✔ **[Podcasting Still Runs on RSS](https://www.reddit.com/r/podcasting/comments/ouqffz/can_someone_explain_rss_distribution_is_this/)** – If you listen to podcasts, you're already using RSS—even if you don't realize it! Podcast platforms still rely on it to distribute content.
 
-#### Modern Alternatives & Solutions
+### Modern Alternatives & Solutions
 
 While traditional RSS feeds are still around, **new tools and services** are making it easier than ever to consume content without relying on algorithmic feeds.
 
@@ -58,13 +59,13 @@ This site has an **[RSS feed](https://jamesfmcgrath.org/feed/).** Why not try on
 
 Drupal and WordPress **still natively support RSS**, and newer content platforms like **Substack, Ghost, and Medium** have either integrated RSS or built their own syndication solutions.
 
-#### What This Means for Drupal and Content Management
+### What This Means for Drupal and Content Management
 
 Drupal's **history with RSS** reminds us that the web once embraced **open content syndication**. While RSS never entirely disappeared, it was deprioritized in favor of **platform-centric publishing models** designed to **keep users locked in**.
 
 But what if that's changing? With more people looking for **self-hosted content solutions, federated platforms, and direct subscription models**, **RSS (or something similar) could see a resurgence**.
 
-#### Accessibility and the Role of RSS
+### Accessibility and the Role of RSS
 
 RSS **was—and still is—an accessible way to consume content**. Unlike **social media feeds cluttered with autoplay videos, ads, and distractions**, RSS readers offer:
 
@@ -76,7 +77,7 @@ RSS **was—and still is—an accessible way to consume content**. Unlike **soci
 
 As accessibility and **digital inclusivity** become more significant priorities, RSS has a unique advantage—it delivers **pure content free from external interference**.
 
-#### Would You Use RSS Again?
+### Would You Use RSS Again?
 
 Could RSS become a **mainstream content distribution tool** once more? While it may not replace **social media**, it could find **new life as part of the open web movement**.
 

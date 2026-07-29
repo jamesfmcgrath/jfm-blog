@@ -2,10 +2,11 @@
 title: "What Is a Loop?"
 date: 2025-07-23
 slug: "what-is-a-loop"
+image: "./images/what-is-a-loop.png"
 excerpt: "Learn what a loop is in JavaScript, how to use a for loop, and why loops are essential for writing clean, efficient code. Includes examples and a beginner-friendly challenge."
 ---
 
-### 🧪 Concept:
+## 🧪 Concept:
 
 A loop is a way to repeat code automatically. Instead of writing the same line over and over, you _tell_ the computer to repeat it for you.
 
@@ -23,7 +24,7 @@ This says:
 ▪ Add 1 each time  
 ▪ Say "Hi!" each time through
 
-### 🧰 Why It Matters:
+## 🧰 Why It Matters:
 
 Loops help you work through lists, repeat actions, and save yourself from writing the same thing again and again.
 
@@ -36,7 +37,7 @@ for (let i = 1; i <= 3; i++) {
 }
 ```
 
-### 🧠 Fun Analogy:
+## 🧠 Fun Analogy:
 
 A loop is like a record player on repeat. Once it starts, it keeps playing until you tell it to stop.
 

@@ -2,6 +2,7 @@
 title: "Making Work Flow: Why Automation Isn’t Just for Engineers"
 date: 2025-04-14
 slug: "workflow-automation-benefits"
+image: "./images/workflow-automation-thumbnail-square.png"
 ---
 
 Workflow automation used to feel reserved for the most technical roles—scripts running in the background, triggered by cryptic logic only developers understood. But that’s changing. Automation has become a core strategy not just for engineers but for entire teams looking to work smarter, respond faster, and reduce burnout from repetitive tasks.

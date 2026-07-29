@@ -2,6 +2,7 @@
 title: "Reflecting on My Time at DrupalCon"
 date: 2025-03-21
 slug: "reflecting-on-drupalcon"
+image: "./images/D3B668A4-CE99-4C4C-8800-1C2D812E376E_1_201_a-scaled.jpg"
 ---
 
 Attending my first [DrupalCon](https://events.drupal.org/atlanta2025) was a revelation. I found a space where inspiration, community, and innovation come together.

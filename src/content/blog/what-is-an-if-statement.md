@@ -2,10 +2,11 @@
 title: "What Is an If Statement?"
 date: 2025-07-24
 slug: "what-is-an-if-statement"
+image: "./images/what-is-an-if.png"
 excerpt: "Learn how if statements work in JavaScript, including how to write them, why they're useful, and how to use them to control program flow. Includes examples, analogies, and a simple coding challenge for beginners."
 ---
 
-### 🧪 Concept:
+## 🧪 Concept:
 
 An `if` statement lets your code make decisions. It checks whether something is true — and if it is, it runs some code.
 
@@ -19,11 +20,11 @@ if (isRaining) {
 
 The code inside the `{ }` only runs _if_ the condition is true.
 
-### 🧰 **W**hy It Matters:
+## 🧰 **W**hy It Matters:
 
 Conditional logic is everywhere — websites, apps, games. It lets your program respond to what's happening.
 
-### 🎉 Quick Challenge:
+## 🎉 Quick Challenge:
 
 Write a basic `if` statement that checks your favourite colour:
 
@@ -35,7 +36,7 @@ if (favoriteColor === "green") {
 }
 ```
 
-### 🧠 Fun Analogy:
+## 🧠 Fun Analogy:
 
 Think of an `if` statement like a gate: “If this is true, open up and let the code through.”
 

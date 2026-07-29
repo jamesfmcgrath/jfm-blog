@@ -2,10 +2,11 @@
 title: "What Is an Object?"
 date: 2025-07-22
 slug: "what-is-an-object"
+image: "./images/cal-day4.png"
 excerpt: "Learn what a JavaScript object is, how to create one, and how to access its properties using dot notation — explained simply in Day 4 of Ctrl + Alt + Learn."
 ---
 
-### 🧪 Concept:
+## 🧪 Concept:
 
 An object is like a mini file folder. You can pack it with labelled facts about something — a person, a place, a donut 🍩
 
@@ -27,11 +28,11 @@ Want to access one?
 console.log(person.name); // Riley
 ```
 
-### 🧰 Why It Matters:
+## 🧰 Why It Matters:
 
 Objects let you group related info together. They’re super useful when you want to keep things organized and readable — especially when your code gets more complex.
 
-### 🎉 Quick Challenge:
+## 🎉 Quick Challenge:
 
 Make your own object about… you!
 
@@ -45,11 +46,11 @@ let me = {
 console.log(me.favoriteColor);
 ```
 
-### 🧠 Fun Analogy:
+## 🧠 Fun Analogy:
 
 Think of an object like a backpack with labelled pockets. One has your name, one has your age, one has a granola bar. Reach into the pocket to grab the info.
 
-### 📚 Further Reading:
+## 📚 Further Reading:
 
 ▪ [MDN Docs – Loops and Iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)  
 ▪ W3Schools – JavaScript Loops

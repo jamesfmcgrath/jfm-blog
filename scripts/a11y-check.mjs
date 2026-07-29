@@ -10,7 +10,8 @@ async function checkPage(page, path, theme) {
 		document.documentElement.dataset.theme = t;
 	}, theme);
 	const results = await new AxeBuilder({ page })
-		.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
+		// 'best-practice' is needed for heading-order, which carries no wcag2* tag.
+		.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'])
 		.analyze();
 
 	if (results.violations.length > 0) {

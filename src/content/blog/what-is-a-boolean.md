@@ -2,10 +2,11 @@
 title: "What Is a Boolean?"
 date: 2025-07-27
 slug: "what-is-a-boolean"
+image: "./images/what-is-a-boolean.png"
 excerpt: "Learn what a Boolean is in JavaScript, how it works, and why it's essential for logic in code. This beginner-friendly post includes examples, analogies, and a quick coding challenge."
 ---
 
-### 🧪 Concept:
+## 🧪 Concept:
 
 A Boolean is a type of value that’s either `true` or `false`. That’s it — just those two options.
 
@@ -18,11 +19,11 @@ let hasUmbrella = false;
 
 These values are especially useful when making decisions with `if` statements or controlling logic in your program.
 
-### 🧰 Why It Matters:
+## 🧰 Why It Matters:
 
 Booleans are the building blocks of logic in code. They help your program know what to do — and when.
 
-### 🎉 Quick Challenge:
+## 🎉 Quick Challenge:
 
 Try creating a couple of Boolean values about yourself:
 
@@ -39,11 +40,11 @@ if (likesPizza) {
 }
 ```
 
-### 🧠 Fun Analogy:
+## 🧠 Fun Analogy:
 
 A Boolean is like a light switch — it’s either ON or OFF. No maybes.
 
-### 📚 Further Reading:
+## 📚 Further Reading:
 
 ▪ M[DN Docs – Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)  
 ▪ [W3Schools – JavaScript Booleans](https://www.w3schools.com/js/js_booleans.asp)

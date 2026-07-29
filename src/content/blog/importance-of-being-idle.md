@@ -2,6 +2,7 @@
 title: "The Importance of Being Idle: Making Space for Change and Clarity"
 date: 2025-04-07
 slug: "importance-of-being-idle"
+image: "./images/ChatGPT-Image-Apr-7-2025-09_13_32-AM.png"
 ---
 
 _"I sold my soul for the second time, 'cause the man, he don't pay me."_  
