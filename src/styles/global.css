@@ -56,6 +56,8 @@ a:hover {
 
 pre, code {
 	font-family: var(--font-jetbrains-mono);
+	font-size: 14px;
+	line-height: 1.65;
 }
 pre {
 	background: var(--code-bg);
@@ -63,6 +65,7 @@ pre {
 	border-radius: 2px;
 	padding: 20px 22px;
 	overflow-x: auto;
+	margin: 0 0 26px 0;
 }
 
 .sr-only {
