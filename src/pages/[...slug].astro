@@ -2,6 +2,7 @@
 import { getCollection, getEntry, render } from 'astro:content';
 import BlogPost from '../layouts/BlogPost.astro';
 import Page from '../layouts/Page.astro';
+import { deriveExcerpt } from '../lib/excerpt.ts';
 
 export async function getStaticPaths() {
 	const posts = (await getCollection('blog')).sort(
@@ -33,6 +34,8 @@ const { Content } = await render(entry);
 {kind === 'post' ? (
 	<BlogPost
 		title={entry.data.title}
+		description={entry.data.excerpt ?? deriveExcerpt(entry.body ?? '')}
+		image={entry.data.image}
 		date={entry.data.date}
 		readingTime={Math.max(1, Math.round((entry.body?.split(/\s+/).length ?? 0) / 200))}
 		prevPost={prevPost && { slug: prevPost.data.slug, title: prevPost.data.title }}

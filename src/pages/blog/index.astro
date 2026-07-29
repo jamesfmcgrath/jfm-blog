@@ -17,24 +17,34 @@ const posts = (await getCollection('blog')).sort(
 	<body>
 		<Header />
 		<main id="main" tabindex="-1">
-			<h1>Archive</h1>
-			<p class="count">{posts.length} posts, newest first.</p>
-			<ul>
-				{posts.map((post) => (
-					<li>
-						<a href={`/${post.data.slug}/`}>{post.data.title}</a>
-						<FormattedDate date={post.data.date} />
-					</li>
-				))}
-			</ul>
+			<section class="archive">
+				<h1>Archive</h1>
+				<p class="count">{posts.length} posts, newest first.</p>
+				<ul>
+					{posts.map((post) => (
+						<li>
+							<a href={`/${post.data.slug}/`}>{post.data.title}</a>
+							<FormattedDate date={post.data.date} />
+						</li>
+					))}
+				</ul>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
 <style>
 	main {
-		padding: 64px 8vw 80px 10vw;
+		padding: 0 8vw 0 10vw;
+	}
+	.archive {
 		max-width: 640px;
+		padding-top: 64px;
+		padding-bottom: 80px;
+	}
+	h1 {
+		font-size: 32px;
+		margin: 0 0 8px 0;
 	}
 	.count {
 		font-family: var(--font-zen-kaku);
@@ -54,6 +64,9 @@ const posts = (await getCollection('blog')).sort(
 		gap: 20px;
 		padding: 16px 0;
 		border-top: 1px solid var(--border);
+	}
+	li a {
+		font-size: 17px;
 	}
 	li time {
 		font-family: var(--font-zen-kaku);
