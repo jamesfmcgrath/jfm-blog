@@ -10,7 +10,8 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"a11y": "node scripts/a11y-check.mjs"
+		"a11y": "node scripts/a11y-check.mjs",
+		"test": "node --experimental-strip-types --test tests/*.test.mjs"
 	},
 	"dependencies": {
 		"@astrojs/mdx": "^5.0.4",

@@ -15,7 +15,7 @@ export async function buildRedirects(xmlString) {
 		// Include posts and the one kept page (post_id 1039)
 		if ((postType === 'post' || (postType === 'page' && postId === '1039')) && link) {
 			try {
-				const path = new URL(link).pathname;
+				const path = decodeURIComponent(new URL(link).pathname);
 				postPermalinks.add(path);
 			} catch {
 				// Skip items with invalid links
@@ -35,7 +35,7 @@ export async function buildRedirects(xmlString) {
 			if (!link) return false;
 
 			try {
-				const path = new URL(link).pathname;
+				const path = decodeURIComponent(new URL(link).pathname);
 				// Skip if this attachment's link collides with a post/page permalink
 				if (postPermalinks.has(path)) return false;
 
@@ -47,7 +47,9 @@ export async function buildRedirects(xmlString) {
 		})
 		.map((item) => {
 			const link = item.link?.[0];
-			const path = new URL(link).pathname;
+			// Apache matches RedirectMatch against the decoded URL path, so percent-encoded
+			// non-ASCII characters in the WordPress permalink would never match.
+			const path = decodeURIComponent(new URL(link).pathname);
 			return `RedirectMatch 301 ^${path}$ /`;
 		});
 
