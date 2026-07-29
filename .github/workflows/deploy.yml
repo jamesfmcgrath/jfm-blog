@@ -1,0 +1,91 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run only (no changes made)'
+        required: false
+        default: 'false'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Verify build output exists
+        run: |
+          if [ ! -d dist ]; then
+            echo "ERROR: dist/ does not exist - refusing to deploy"
+            exit 1
+          fi
+          file_count=$(find dist -type f | wc -l)
+          if [ "$file_count" -eq 0 ]; then
+            echo "ERROR: dist/ is empty - refusing to deploy"
+            exit 1
+          fi
+          echo "Build output looks good ($file_count files):"
+          ls dist/ | head
+
+      - name: Verify deploy path
+        run: |
+          if [ -z "${{ secrets.DEPLOY_PATH }}" ]; then
+            echo "ERROR: DEPLOY_PATH secret is empty"
+            exit 1
+          fi
+          case "${{ secrets.DEPLOY_PATH }}" in
+            /home/*/domains/jamesfmcgrath.org/public_html) ;;
+            *)
+              echo "ERROR: DEPLOY_PATH must be exactly /home/USER/domains/jamesfmcgrath.org/public_html"
+              echo "Got: ${{ secrets.DEPLOY_PATH }}"
+              exit 1
+              ;;
+          esac
+          echo "Deploy path looks valid"
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Verify destination is writable
+        run: |
+          ssh -v -i ~/.ssh/deploy_key -o IdentitiesOnly=yes -p ${{ secrets.SSH_PORT }} \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "test -d '${{ secrets.DEPLOY_PATH }}' && test -w '${{ secrets.DEPLOY_PATH }}' && echo OK" \
+            || (echo "ERROR: Destination does not exist or is not writable"; exit 1)
+
+      - name: Dry-run rsync
+        run: |
+          echo "=== DRY RUN - showing what would change ==="
+          rsync -avz --delete --dry-run \
+            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.SSH_PORT }}" \
+            dist/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/
+
+      - name: Deploy via rsync
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          rsync -avz --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.SSH_PORT }}" \
+            dist/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/
