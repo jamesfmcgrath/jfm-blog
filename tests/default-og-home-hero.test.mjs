@@ -8,10 +8,10 @@ function ogImage(html) {
 	return m[1];
 }
 
-test('home hero markup is present in the built home page', async () => {
+test('home has no visible hero image', async () => {
 	const html = await readFile('dist/index.html', 'utf8');
-	assert.match(html, /class="home-hero"/);
-	assert.match(html, /alt="James with a monkey"/);
+	assert.doesNotMatch(html, /class="home-hero"/);
+	assert.doesNotMatch(html, /alt="James with a monkey"/);
 });
 
 test('home and archive share default og:image; featured post keeps its own', async () => {
@@ -28,5 +28,5 @@ test('home and archive share default og:image; featured post keeps its own', asy
 
 	assert.equal(homeOg, blogOg, 'home and archive share the default OG image');
 	assert.notEqual(postOg, homeOg, 'post with featured image must not use the default');
-	assert.match(homeOg, /https:\/\/jamesfmcgrath\.org\/_astro\//);
+	assert.match(homeOg, /https:\/\/jamesfmcgrath\.org\/_astro\/james-and-a-monkey/);
 });
