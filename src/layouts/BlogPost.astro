@@ -54,7 +54,6 @@ const { title, description, date, readingTime, image, prevPost, nextPost } = Ast
 		padding: 0 8vw 0 10vw;
 	}
 	.post {
-		max-width: 640px;
 		padding-top: 64px;
 		padding-bottom: 72px;
 	}
@@ -80,6 +79,7 @@ const { title, description, date, readingTime, image, prevPost, nextPost } = Ast
 	.prose {
 		font-size: 18px;
 		line-height: 1.75;
+		max-width: 65ch;
 	}
 	.prose :global(h2) {
 		font-family: var(--font-zen-kaku);

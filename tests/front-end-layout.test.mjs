@@ -74,3 +74,73 @@ test('archive dates and home typography match mockup tokens', async () => {
 		await page.close();
 	});
 });
+
+test('content is fluid with 65ch reading measure', async () => {
+	await withPreview(async ({ browser, baseURL }) => {
+		const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+		await page.emulateMedia({ colorScheme: 'light' });
+
+		await page.goto(`${baseURL}/`);
+		const postsWidth = await page.locator('.posts').evaluate((el) => el.getBoundingClientRect().width);
+		assert.ok(postsWidth > 700, `expected fluid .posts wider than 640px, got ${postsWidth}`);
+		const excerptMax = await page.locator('.post-preview .excerpt').first().evaluate((el) => {
+			for (const sheet of document.styleSheets) {
+				try {
+					for (const rule of sheet.cssRules) {
+						if (rule.style?.maxWidth) {
+							try {
+								if (el.matches(rule.selectorText)) return rule.style.maxWidth;
+							} catch {}
+						}
+					}
+				} catch {}
+			}
+			return getComputedStyle(el).maxWidth;
+		});
+		assert.equal(excerptMax, '65ch');
+
+		await page.goto(`${baseURL}/blog/`);
+		const archiveWidth = await page.locator('.archive').evaluate((el) => el.getBoundingClientRect().width);
+		assert.ok(archiveWidth > 700, `expected fluid .archive, got ${archiveWidth}`);
+
+		await page.goto(`${baseURL}/right-sizing-government-websites/`);
+		const postWidth = await page.locator('.post').evaluate((el) => el.getBoundingClientRect().width);
+		const proseMax = await page.locator('.prose').evaluate((el) => {
+			for (const sheet of document.styleSheets) {
+				try {
+					for (const rule of sheet.cssRules) {
+						if (rule.style?.maxWidth) {
+							try {
+								if (el.matches(rule.selectorText)) return rule.style.maxWidth;
+							} catch {}
+						}
+					}
+				} catch {}
+			}
+			return getComputedStyle(el).maxWidth;
+		});
+		assert.ok(postWidth > 700, `expected fluid .post, got ${postWidth}`);
+		assert.equal(proseMax, '65ch');
+
+		await page.goto(`${baseURL}/learn-javascript-for-beginners/`);
+		const pageWidth = await page.locator('.page').evaluate((el) => el.getBoundingClientRect().width);
+		const pageProseMax = await page.locator('.prose').evaluate((el) => {
+			for (const sheet of document.styleSheets) {
+				try {
+					for (const rule of sheet.cssRules) {
+						if (rule.style?.maxWidth) {
+							try {
+								if (el.matches(rule.selectorText)) return rule.style.maxWidth;
+							} catch {}
+						}
+					}
+				} catch {}
+			}
+			return getComputedStyle(el).maxWidth;
+		});
+		assert.ok(pageWidth > 700, `expected fluid .page, got ${pageWidth}`);
+		assert.equal(pageProseMax, '65ch');
+
+		await page.close();
+	});
+});
