@@ -1,18 +1,31 @@
 ---
 import '../styles/global.css';
-import { Font } from 'astro:assets';
+import { Font, getImage } from 'astro:assets';
 import { SITE_TITLE } from '../consts';
 import { goatcounterCountUrl } from '../lib/goatcounter';
+import defaultOgSource from '../assets/james-and-a-monkey.png';
 
 interface Props {
 	title: string;
 	description: string;
 	image?: string;
+	imageWidth?: number;
+	imageHeight?: number;
 }
 
-const { title, description, image } = Astro.props;
+const { title, description, image, imageWidth, imageHeight } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const imageURL = image ? new URL(image, Astro.site).href : undefined;
+// LinkedIn wants ≥1200×627 at ~1.91:1; lock both axes so the export stays that ratio.
+const defaultOg = await getImage({
+	src: defaultOgSource,
+	width: 1200,
+	height: 630,
+	format: 'jpg',
+	fit: 'cover',
+});
+const imageURL = new URL(image ?? defaultOg.src, Astro.site).href;
+const ogWidth = imageWidth ?? Number(defaultOg.attributes.width ?? 1200);
+const ogHeight = imageHeight ?? Number(defaultOg.attributes.height ?? 630);
 const goatcounterUrl = goatcounterCountUrl(import.meta.env.PUBLIC_GOATCOUNTER_CODE);
 ---
 <meta charset="utf-8" />
@@ -34,12 +47,15 @@ const goatcounterUrl = goatcounterCountUrl(import.meta.env.PUBLIC_GOATCOUNTER_CO
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-{imageURL && <meta property="og:image" content={imageURL} />}
+<meta property="og:image" content={imageURL} />
+<meta property="og:image:width" content={String(ogWidth)} />
+<meta property="og:image:height" content={String(ogHeight)} />
+<meta property="og:image:type" content="image/jpeg" />
 
-<meta name="twitter:card" content={imageURL ? 'summary_large_image' : 'summary'} />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-{imageURL && <meta name="twitter:image" content={imageURL} />}
+<meta name="twitter:image" content={imageURL} />
 
 <script is:inline>
 	(function () {
