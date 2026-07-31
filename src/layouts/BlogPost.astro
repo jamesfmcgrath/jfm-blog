@@ -19,12 +19,18 @@ const { title, description, date, readingTime, image, prevPost, nextPost } = Ast
 
 // Keep frontmatter images for social previews; do not render them in the post body.
 const ogImage = image
-	? await getImage({ src: image, width: 1200, format: 'jpg' })
+	? await getImage({ src: image, width: 1200, height: 630, format: 'jpg', fit: 'cover' })
 	: undefined;
 ---
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} image={ogImage?.src} />
+		<BaseHead
+			title={title}
+			description={description}
+			image={ogImage?.src}
+			imageWidth={ogImage ? Number(ogImage.attributes.width) : undefined}
+			imageHeight={ogImage ? Number(ogImage.attributes.height) : undefined}
+		/>
 	</head>
 	<body>
 		<Header />

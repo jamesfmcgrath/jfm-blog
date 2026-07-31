@@ -29,4 +29,6 @@ test('home and archive share default og:image; featured post keeps its own', asy
 	assert.equal(homeOg, blogOg, 'home and archive share the default OG image');
 	assert.notEqual(postOg, homeOg, 'post with featured image must not use the default');
 	assert.match(homeOg, /https:\/\/jamesfmcgrath\.org\/_astro\/james-and-a-monkey/);
+	assert.match(homeHtml, /property="og:image:width" content="1200"/);
+	assert.match(homeHtml, /property="og:image:height" content="630"/);
 });
