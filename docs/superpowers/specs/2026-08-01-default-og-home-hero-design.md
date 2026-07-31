@@ -13,7 +13,7 @@ full-bleed hero on the home page.
 | Topic | Choice |
 |-------|--------|
 | Social share behaviour | **Fallback only** — pages without an image prop use the monkey photo; posts that already pass a featured image keep theirs |
-| Home hero placement | **A — Full-bleed under header**, then existing intro + recent posts |
+| Home hero placement | Under header, **constrained to `65ch`** (same reading width as excerpts), then intro + recent posts |
 | Asset location | Site-level under `src/assets/` (not tied to a blog post entry) |
 
 ## Asset
@@ -43,11 +43,10 @@ Also ignore / leave untracked any scratch files at repo root (e.g.
 
 ## Home hero
 
-1. On `src/pages/index.astro`, render the photo with Astro `<Image>`
-   immediately under `<Header />` (or at the top of `<main>` before `.intro`),
-   full-bleed edge-to-edge.
-2. Break out of the main content side padding (`8vw` / `10vw`) so the image
-   spans the viewport width; intro and posts keep existing padding.
+1. On `src/pages/index.astro`, render the photo with Astro `<Image>` at the
+   top of `<main>` before `.intro`, inside the existing side padding.
+2. Constrain the hero to `max-width: 65ch` so it matches the reading width used
+   by excerpts / prose (not full-bleed).
 3. No card chrome, overlays, badges, or required caption.
 4. Suggested `alt`: `James with a monkey` (adjustable if the user prefers
    different wording).
@@ -63,8 +62,8 @@ Also ignore / leave untracked any scratch files at repo root (e.g.
 ## Testing
 
 1. Build without errors; optimized asset appears under `dist/_astro/`.
-2. Home HTML includes a full-width hero `<img>` (or picture) under the header
-   and before the intro.
+2. Home HTML includes a hero `<img>` (or picture) in `<main>` before the intro,
+   with the hero container capped at `65ch`.
 3. Home and `/blog/` meta tags include `og:image` pointing at the default
    optimized asset.
 4. A post with frontmatter `image` still emits its own `og:image`, not the
@@ -75,5 +74,5 @@ Also ignore / leave untracked any scratch files at repo root (e.g.
 
 - Sharing the home or archive URL shows the monkey photo in link previews.
 - Sharing a post with a featured image still shows that post’s image.
-- Home page opens with a full-bleed hero of that photo, then the existing
+- Home page opens with a `65ch`-wide hero of that photo, then the existing
   content rhythm.
