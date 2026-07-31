@@ -28,7 +28,7 @@ const ogImage = image
 	</head>
 	<body>
 		<Header />
-		<main id="main" tabindex="-1">
+		<main id="main" role="main" tabindex="-1">
 			<article class="post">
 				<a href="/" class="back">&larr; Home</a>
 				<h1>{title}</h1>
@@ -50,49 +50,50 @@ const ogImage = image
 		padding: 0 8vw 0 10vw;
 	}
 	.post {
-		padding-top: 64px;
-		padding-bottom: 72px;
+		padding-top: 4rem;
+		padding-bottom: 4.5rem;
 	}
 	.back, .meta {
 		font-family: var(--font-zen-kaku);
-		font-size: 14px;
+		font-size: 0.875rem;
 		color: var(--muted);
 	}
 	h1 {
-		font-size: 36px;
-		margin: 28px 0 14px 0;
+		font-size: 2.25rem;
+		margin: 1.75rem 0 0.875rem 0;
 	}
 	.meta {
-		margin: 0 0 48px 0;
+		margin: 0 0 3rem 0;
 	}
 	.prose {
-		font-size: 18px;
+		font-size: 1.125rem;
 		line-height: 1.75;
 		max-width: 65ch;
 	}
 	.prose :global(h2) {
 		font-family: var(--font-zen-kaku);
 		font-weight: 500;
-		font-size: 23px;
-		margin: 44px 0 18px 0;
+		font-size: 1.4375rem;
+		margin: 2.75rem 0 1.125rem 0;
 	}
 	.prose :global(p) {
-		margin: 0 0 26px 0;
+		margin: 0 0 1.625rem 0;
 	}
 	.post-nav {
 		display: flex;
 		justify-content: space-between;
-		gap: 20px;
-		padding-top: 40px;
-		margin-top: 40px;
+		gap: 1.25rem;
+		padding-top: 2.5rem;
+		margin-top: 2.5rem;
 		border-top: 1px solid var(--border);
 		font-family: var(--font-zen-kaku);
-		font-size: 15px;
+		font-size: 0.9375rem;
 	}
 	.post-nav a {
 		max-width: 45%;
 	}
 	.post-nav .next {
 		text-align: right;
+		justify-content: flex-end;
 	}
 </style>

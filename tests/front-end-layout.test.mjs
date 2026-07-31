@@ -58,7 +58,7 @@ test('archive dates and home typography match mockup tokens', async () => {
 			};
 		});
 		assert.equal(timeStyles.fontSize, '13px');
-		assert.equal(timeStyles.color, 'rgb(91, 86, 77)'); // --muted light
+		assert.equal(timeStyles.color, 'rgb(79, 74, 66)'); // --muted light (#4F4A42)
 		assert.match(timeStyles.fontFamily, /Inter|system-ui|Segoe UI|sans-serif/i);
 		assert.equal(timeStyles.whiteSpace, 'nowrap');
 

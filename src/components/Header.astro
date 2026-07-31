@@ -1,8 +1,8 @@
 ---
 import { SITE_TITLE } from '../consts';
 ---
-<a href="#main" class="skip-link">Skip to content</a>
-<header>
+<header role="banner">
+	<a href="#main" class="skip-link">Skip to content</a>
 	<a href="/" class="site-title">{SITE_TITLE}</a>
 	<button
 		type="button"
@@ -20,20 +20,51 @@ import { SITE_TITLE } from '../consts';
 		<a href="/blog/">Writing</a>
 		<a href="https://jfmdigitalworks.com">JFM Digital Works</a>
 	</nav>
+	<script is:inline>
+		(function () {
+			var button = document.querySelector('.nav-toggle');
+			var nav = document.getElementById('site-nav');
+			if (!button || !nav) return;
+			var label = button.querySelector('.nav-toggle-label');
+
+			function setOpen(open) {
+				button.setAttribute('aria-expanded', open ? 'true' : 'false');
+				if (label) label.textContent = open ? 'Close' : 'Menu';
+			}
+
+			button.addEventListener('click', function () {
+				setOpen(button.getAttribute('aria-expanded') !== 'true');
+			});
+
+			document.addEventListener('keydown', function (event) {
+				if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+					setOpen(false);
+					button.focus();
+				}
+			});
+
+			window.addEventListener('resize', function () {
+				if (window.matchMedia('(min-width: 900px)').matches) {
+					setOpen(false);
+				}
+			});
+		})();
+	</script>
 </header>
 <style>
 	header {
-		padding: 56px 8vw 40px 10vw;
+		padding: 3.5rem 8vw 2.5rem 10vw;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 		flex-wrap: wrap;
-		gap: 20px;
+		gap: 1.25rem;
 		border-bottom: 1px solid var(--border);
+		position: relative;
 	}
 	.site-title {
 		font-family: var(--font-zen-kaku);
-		font-size: 22px;
+		font-size: 1.375rem;
 		font-weight: 500;
 		line-height: 1.2;
 	}
@@ -44,11 +75,12 @@ import { SITE_TITLE } from '../consts';
 		font-family: var(--font-zen-kaku);
 		color: var(--text);
 		cursor: pointer;
-		padding: 10px 9px 4px;
+		padding: 0.625rem 0.55rem 0.25rem;
 		border-radius: 2px;
-		font-size: 11px;
+		font-size: 0.6875rem;
 		letter-spacing: 0.04em;
 		line-height: 1;
+		justify-content: center;
 	}
 	.nav-toggle:hover {
 		color: var(--accent);
@@ -58,7 +90,7 @@ import { SITE_TITLE } from '../consts';
 		flex-direction: column;
 		align-items: stretch;
 		justify-content: flex-end;
-		gap: 12px;
+		gap: 0.75rem;
 		width: max-content;
 	}
 	.nav-toggle-label {
@@ -104,20 +136,19 @@ import { SITE_TITLE } from '../consts';
 	}
 	nav {
 		display: flex;
-		gap: 28px;
+		gap: 1.75rem;
 		align-items: center;
 		font-family: var(--font-zen-kaku);
-		font-size: 15px;
+		font-size: 0.9375rem;
 	}
 	@media (max-width: 899px) {
 		header {
-			/* Keep title + toggle on one row; tighter top padding on small screens */
-			padding-top: 28px;
-			padding-bottom: 24px;
+			padding-top: 1.75rem;
+			padding-bottom: 1.5rem;
 			align-items: center;
 		}
 		.nav-toggle {
-			display: block;
+			display: inline-flex;
 			margin-left: auto;
 			flex-shrink: 0;
 		}
@@ -126,41 +157,11 @@ import { SITE_TITLE } from '../consts';
 			flex-basis: 100%;
 			flex-direction: column;
 			align-items: flex-start;
-			gap: 16px;
-			padding-top: 8px;
+			gap: 1rem;
+			padding-top: 0.5rem;
 		}
 		header:has(.nav-toggle[aria-expanded='true']) nav {
 			display: flex;
 		}
 	}
 </style>
-<script is:inline>
-	(function () {
-		var button = document.querySelector('.nav-toggle');
-		var nav = document.getElementById('site-nav');
-		if (!button || !nav) return;
-		var label = button.querySelector('.nav-toggle-label');
-
-		function setOpen(open) {
-			button.setAttribute('aria-expanded', open ? 'true' : 'false');
-			if (label) label.textContent = open ? 'Close' : 'Menu';
-		}
-
-		button.addEventListener('click', function () {
-			setOpen(button.getAttribute('aria-expanded') !== 'true');
-		});
-
-		document.addEventListener('keydown', function (event) {
-			if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
-				setOpen(false);
-				button.focus();
-			}
-		});
-
-		window.addEventListener('resize', function () {
-			if (window.matchMedia('(min-width: 900px)').matches) {
-				setOpen(false);
-			}
-		});
-	})();
-</script>

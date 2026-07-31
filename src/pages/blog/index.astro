@@ -16,7 +16,7 @@ const posts = (await getCollection('blog')).sort(
 	</head>
 	<body>
 		<Header />
-		<main id="main" tabindex="-1">
+		<main id="main" role="main" tabindex="-1">
 			<section class="archive">
 				<h1>Archive</h1>
 				<p class="count">{posts.length} posts, newest first.</p>
@@ -38,18 +38,18 @@ const posts = (await getCollection('blog')).sort(
 		padding: 0 8vw 0 10vw;
 	}
 	.archive {
-		padding-top: 64px;
-		padding-bottom: 80px;
+		padding-top: 4rem;
+		padding-bottom: 5rem;
 	}
 	h1 {
-		font-size: 32px;
-		margin: 0 0 8px 0;
+		font-size: 2rem;
+		margin: 0 0 0.5rem 0;
 	}
 	.count {
 		font-family: var(--font-zen-kaku);
-		font-size: 14px;
+		font-size: 0.875rem;
 		color: var(--muted);
-		margin: 0 0 48px 0;
+		margin: 0 0 3rem 0;
 	}
 	ul {
 		list-style: none;
@@ -59,17 +59,17 @@ const posts = (await getCollection('blog')).sort(
 	li {
 		display: flex;
 		justify-content: space-between;
-		align-items: baseline;
-		gap: 20px;
-		padding: 16px 0;
+		align-items: center;
+		gap: 1.25rem;
+		padding: 1rem 0;
 		border-top: 1px solid var(--border);
 	}
 	li a {
-		font-size: 17px;
+		font-size: 1.0625rem;
 	}
 	li :global(time) {
 		font-family: var(--font-zen-kaku);
-		font-size: 13px;
+		font-size: 0.8125rem;
 		color: var(--muted);
 		white-space: nowrap;
 	}
