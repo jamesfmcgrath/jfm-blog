@@ -59,7 +59,7 @@ test('archive dates and home typography match mockup tokens', async () => {
 		});
 		assert.equal(timeStyles.fontSize, '13px');
 		assert.equal(timeStyles.color, 'rgb(91, 86, 77)'); // --muted light
-		assert.match(timeStyles.fontFamily, /Zen Kaku/i);
+		assert.match(timeStyles.fontFamily, /Inter|system-ui|Segoe UI|sans-serif/i);
 		assert.equal(timeStyles.whiteSpace, 'nowrap');
 
 		await page.goto(`${baseURL}/`);
@@ -91,7 +91,8 @@ test('nav collapses to hamburger below 900px', async () => {
 		await toggle.click();
 		assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
 		assert.equal(await page.locator('#site-nav a').first().isVisible(), true);
-		assert.match(await toggle.innerText(), /close/i);
+		assert.match(await toggle.locator('.nav-toggle-label').innerText(), /close/i);
+		assert.equal(await toggle.locator('.nav-toggle-icon').count(), 1);
 
 		await page.keyboard.press('Escape');
 		assert.equal(await toggle.getAttribute('aria-expanded'), 'false');

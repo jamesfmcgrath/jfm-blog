@@ -16,25 +16,12 @@ export default defineConfig({
 	fonts: [
 		{
 			provider: fontProviders.google(),
-			name: 'Source Serif 4',
-			cssVariable: '--font-source-serif',
-			fallbacks: ['Georgia', 'serif'],
+			name: 'Inter',
+			cssVariable: '--font-inter',
+			fallbacks: ['system-ui', 'Segoe UI', 'sans-serif'],
 			weights: [400, 500, 600],
 			styles: ['normal', 'italic'],
-		},
-		{
-			provider: fontProviders.google(),
-			name: 'Zen Kaku Gothic New',
-			cssVariable: '--font-zen-kaku',
-			fallbacks: ['sans-serif'],
-			weights: [400, 500],
-		},
-		{
-			provider: fontProviders.google(),
-			name: 'JetBrains Mono',
-			cssVariable: '--font-jetbrains-mono',
-			fallbacks: ['monospace'],
-			weights: [400, 500],
+			subsets: ['latin'],
 		},
 	],
 });

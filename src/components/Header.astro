@@ -10,7 +10,10 @@ import { SITE_TITLE } from '../consts';
 		aria-expanded="false"
 		aria-controls="site-nav"
 	>
-		Menu
+		<span class="nav-toggle-stack">
+			<span class="nav-toggle-icon" aria-hidden="true"></span>
+			<span class="nav-toggle-label">Menu</span>
+		</span>
 	</button>
 	<nav id="site-nav" aria-label="Main">
 		<a href="/">Home</a>
@@ -23,7 +26,7 @@ import { SITE_TITLE } from '../consts';
 		padding: 56px 8vw 40px 10vw;
 		display: flex;
 		justify-content: space-between;
-		align-items: baseline;
+		align-items: center;
 		flex-wrap: wrap;
 		gap: 20px;
 		border-bottom: 1px solid var(--border);
@@ -32,20 +35,72 @@ import { SITE_TITLE } from '../consts';
 		font-family: var(--font-zen-kaku);
 		font-size: 22px;
 		font-weight: 500;
+		line-height: 1.2;
 	}
 	.nav-toggle {
 		display: none;
 		background: none;
-		border: 1px solid var(--border);
+		border: none;
 		font-family: var(--font-zen-kaku);
 		color: var(--text);
 		cursor: pointer;
-		padding: 6px 12px;
+		padding: 10px 9px 4px;
 		border-radius: 2px;
-		font-size: 12px;
+		font-size: 11px;
+		letter-spacing: 0.04em;
+		line-height: 1;
 	}
 	.nav-toggle:hover {
-		border-color: var(--accent);
+		color: var(--accent);
+	}
+	.nav-toggle-stack {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		justify-content: flex-end;
+		gap: 12px;
+		width: max-content;
+	}
+	.nav-toggle-label {
+		display: block;
+		text-align: center;
+		line-height: 1;
+	}
+	.nav-toggle-icon {
+		display: block;
+		height: 2px;
+		background: currentColor;
+		position: relative;
+		transition: background 0.15s ease, width 0.15s ease;
+	}
+	.nav-toggle-icon::before,
+	.nav-toggle-icon::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: currentColor;
+		transition: transform 0.15s ease, top 0.15s ease;
+	}
+	.nav-toggle-icon::before {
+		top: -5px;
+	}
+	.nav-toggle-icon::after {
+		top: 5px;
+	}
+	.nav-toggle[aria-expanded='true'] .nav-toggle-icon {
+		width: 75%;
+		align-self: center;
+		background: transparent;
+	}
+	.nav-toggle[aria-expanded='true'] .nav-toggle-icon::before {
+		top: 0;
+		transform: rotate(45deg);
+	}
+	.nav-toggle[aria-expanded='true'] .nav-toggle-icon::after {
+		top: 0;
+		transform: rotate(-45deg);
 	}
 	nav {
 		display: flex;
@@ -55,9 +110,16 @@ import { SITE_TITLE } from '../consts';
 		font-size: 15px;
 	}
 	@media (max-width: 899px) {
+		header {
+			/* Keep title + toggle on one row; tighter top padding on small screens */
+			padding-top: 28px;
+			padding-bottom: 24px;
+			align-items: center;
+		}
 		.nav-toggle {
-			display: inline-block;
+			display: block;
 			margin-left: auto;
+			flex-shrink: 0;
 		}
 		nav {
 			display: none;
@@ -77,10 +139,11 @@ import { SITE_TITLE } from '../consts';
 		var button = document.querySelector('.nav-toggle');
 		var nav = document.getElementById('site-nav');
 		if (!button || !nav) return;
+		var label = button.querySelector('.nav-toggle-label');
 
 		function setOpen(open) {
 			button.setAttribute('aria-expanded', open ? 'true' : 'false');
-			button.textContent = open ? 'Close' : 'Menu';
+			if (label) label.textContent = open ? 'Close' : 'Menu';
 		}
 
 		button.addEventListener('click', function () {

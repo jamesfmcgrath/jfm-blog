@@ -5,6 +5,10 @@
 	--accent: #2F4157;
 	--border: #E4DFD3;
 	--code-bg: #EFEAE0;
+	/* Resolved after <Font> injects --font-inter; system stack until then. */
+	--font-source-serif: var(--font-inter, system-ui, -apple-system, 'Segoe UI', sans-serif);
+	--font-zen-kaku: var(--font-inter, system-ui, -apple-system, 'Segoe UI', sans-serif);
+	--font-jetbrains-mono: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'Courier New', monospace;
 }
 
 :root[data-theme="dark"] {
