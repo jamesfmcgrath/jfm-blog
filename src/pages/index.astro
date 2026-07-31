@@ -25,8 +25,8 @@ const posts = (await getCollection('blog'))
 				<Image
 					src={heroImage}
 					alt="James with a monkey"
-					widths={[480, 720, 1200]}
-					sizes="65ch"
+					widths={[720, 1200, 1920]}
+					sizes="calc(100vw - 18vw)"
 					priority
 				/>
 			</div>
@@ -49,7 +49,7 @@ const posts = (await getCollection('blog'))
 </html>
 <style>
 	.home-hero {
-		max-width: 65ch;
+		width: 100%;
 		padding-top: 4rem;
 		line-height: 0;
 	}
