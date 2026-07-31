@@ -8,7 +8,6 @@ import { SITE_TITLE } from '../consts';
 		<a href="/">Home</a>
 		<a href="/blog/">Writing</a>
 		<a href="https://jfmdigitalworks.com">JFM Digital Works</a>
-		<button id="theme-toggle" type="button" aria-live="polite">Dark mode</button>
 	</nav>
 </header>
 <style>
@@ -33,33 +32,4 @@ import { SITE_TITLE } from '../consts';
 		font-family: var(--font-zen-kaku);
 		font-size: 15px;
 	}
-	#theme-toggle {
-		background: none;
-		border: 1px solid var(--border);
-		font-family: inherit;
-		color: var(--text);
-		cursor: pointer;
-		padding: 6px 12px;
-		border-radius: 2px;
-		font-size: 12px;
-	}
-	#theme-toggle:hover {
-		border-color: var(--accent);
-	}
 </style>
-<script is:inline>
-	(function () {
-		var button = document.getElementById('theme-toggle');
-		function label() {
-			var isDark = document.documentElement.dataset.theme === 'dark';
-			button.textContent = isDark ? 'Light mode' : 'Dark mode';
-		}
-		label();
-		button.addEventListener('click', function () {
-			var next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-			document.documentElement.dataset.theme = next;
-			localStorage.setItem('theme', next);
-			label();
-		});
-	})();
-</script>
