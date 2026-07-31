@@ -68,7 +68,7 @@ const posts = (await getCollection('blog')).sort(
 	li a {
 		font-size: 17px;
 	}
-	li time {
+	li :global(time) {
 		font-family: var(--font-zen-kaku);
 		font-size: 13px;
 		color: var(--muted);

@@ -41,3 +41,36 @@ test('home has no theme toggle and follows prefers-color-scheme', async () => {
 		await light.close();
 	});
 });
+
+test('archive dates and home typography match mockup tokens', async () => {
+	await withPreview(async ({ browser, baseURL }) => {
+		const page = await browser.newPage();
+		await page.emulateMedia({ colorScheme: 'light' });
+
+		await page.goto(`${baseURL}/blog/`);
+		const timeStyles = await page.locator('.archive li time').first().evaluate((el) => {
+			const cs = getComputedStyle(el);
+			return {
+				fontSize: cs.fontSize,
+				color: cs.color,
+				fontFamily: cs.fontFamily,
+				whiteSpace: cs.whiteSpace,
+			};
+		});
+		assert.equal(timeStyles.fontSize, '13px');
+		assert.equal(timeStyles.color, 'rgb(91, 86, 77)'); // --muted light
+		assert.match(timeStyles.fontFamily, /Zen Kaku/i);
+		assert.equal(timeStyles.whiteSpace, 'nowrap');
+
+		await page.goto(`${baseURL}/`);
+		const introLetter = await page.locator('.intro p').evaluate((el) => getComputedStyle(el).letterSpacing);
+		// 0.02em at 14px ≈ 0.28px
+		assert.ok(
+			introLetter === '0.02em' || Math.abs(parseFloat(introLetter) - 0.28) < 0.05,
+			`expected ~0.02em letter-spacing, got ${introLetter}`,
+		);
+		const h2Lh = await page.locator('.post-preview h2').first().evaluate((el) => getComputedStyle(el).lineHeight);
+		assert.equal(h2Lh, '29.7px'); // 22px * 1.35
+		await page.close();
+	});
+});
