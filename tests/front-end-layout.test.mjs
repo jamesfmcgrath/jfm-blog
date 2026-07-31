@@ -75,6 +75,36 @@ test('archive dates and home typography match mockup tokens', async () => {
 	});
 });
 
+test('nav collapses to hamburger below 900px', async () => {
+	await withPreview(async ({ browser, baseURL }) => {
+		const page = await browser.newPage({ viewport: { width: 880, height: 800 } });
+		await page.goto(`${baseURL}/`);
+
+		const toggle = page.locator('.nav-toggle');
+		await assert.equal(await toggle.isVisible(), true);
+		assert.equal(await toggle.getAttribute('aria-expanded'), 'false');
+		assert.equal(await toggle.getAttribute('aria-controls'), 'site-nav');
+
+		// Nav links not visible while collapsed
+		assert.equal(await page.locator('#site-nav a').first().isVisible(), false);
+
+		await toggle.click();
+		assert.equal(await toggle.getAttribute('aria-expanded'), 'true');
+		assert.equal(await page.locator('#site-nav a').first().isVisible(), true);
+		assert.match(await toggle.innerText(), /close/i);
+
+		await page.keyboard.press('Escape');
+		assert.equal(await toggle.getAttribute('aria-expanded'), 'false');
+		assert.equal(await page.locator('#site-nav a').first().isVisible(), false);
+
+		await page.setViewportSize({ width: 1000, height: 800 });
+		assert.equal(await toggle.isVisible(), false);
+		assert.equal(await page.locator('#site-nav a').first().isVisible(), true);
+
+		await page.close();
+	});
+});
+
 test('content is fluid with 65ch reading measure', async () => {
 	await withPreview(async ({ browser, baseURL }) => {
 		const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });

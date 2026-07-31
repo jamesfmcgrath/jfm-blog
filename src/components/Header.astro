@@ -4,7 +4,15 @@ import { SITE_TITLE } from '../consts';
 <a href="#main" class="skip-link">Skip to content</a>
 <header>
 	<a href="/" class="site-title">{SITE_TITLE}</a>
-	<nav aria-label="Main">
+	<button
+		type="button"
+		class="nav-toggle"
+		aria-expanded="false"
+		aria-controls="site-nav"
+	>
+		Menu
+	</button>
+	<nav id="site-nav" aria-label="Main">
 		<a href="/">Home</a>
 		<a href="/blog/">Writing</a>
 		<a href="https://jfmdigitalworks.com">JFM Digital Works</a>
@@ -25,6 +33,20 @@ import { SITE_TITLE } from '../consts';
 		font-size: 22px;
 		font-weight: 500;
 	}
+	.nav-toggle {
+		display: none;
+		background: none;
+		border: 1px solid var(--border);
+		font-family: var(--font-zen-kaku);
+		color: var(--text);
+		cursor: pointer;
+		padding: 6px 12px;
+		border-radius: 2px;
+		font-size: 12px;
+	}
+	.nav-toggle:hover {
+		border-color: var(--accent);
+	}
 	nav {
 		display: flex;
 		gap: 28px;
@@ -32,4 +54,50 @@ import { SITE_TITLE } from '../consts';
 		font-family: var(--font-zen-kaku);
 		font-size: 15px;
 	}
+	@media (max-width: 899px) {
+		.nav-toggle {
+			display: inline-block;
+			margin-left: auto;
+		}
+		nav {
+			display: none;
+			flex-basis: 100%;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 16px;
+			padding-top: 8px;
+		}
+		header:has(.nav-toggle[aria-expanded='true']) nav {
+			display: flex;
+		}
+	}
 </style>
+<script is:inline>
+	(function () {
+		var button = document.querySelector('.nav-toggle');
+		var nav = document.getElementById('site-nav');
+		if (!button || !nav) return;
+
+		function setOpen(open) {
+			button.setAttribute('aria-expanded', open ? 'true' : 'false');
+			button.textContent = open ? 'Close' : 'Menu';
+		}
+
+		button.addEventListener('click', function () {
+			setOpen(button.getAttribute('aria-expanded') !== 'true');
+		});
+
+		document.addEventListener('keydown', function (event) {
+			if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
+				setOpen(false);
+				button.focus();
+			}
+		});
+
+		window.addEventListener('resize', function () {
+			if (window.matchMedia('(min-width: 900px)').matches) {
+				setOpen(false);
+			}
+		});
+	})();
+</script>
