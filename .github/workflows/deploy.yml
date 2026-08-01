@@ -71,7 +71,21 @@ jobs:
           mkdir -p ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p "$SSH_PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts
+          # Hostinger SSH is intermittently unreachable from GitHub runners;
+          # retry keyscan so a transient timeout does not fail the whole deploy.
+          for attempt in 1 2 3 4 5; do
+            if ssh-keyscan -T 10 -p "$SSH_PORT" -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>keyscan.err; then
+              echo "ssh-keyscan succeeded on attempt $attempt"
+              break
+            fi
+            echo "ssh-keyscan attempt $attempt failed:"
+            cat keyscan.err >&2 || true
+            if [ "$attempt" -eq 5 ]; then
+              echo "ERROR: ssh-keyscan failed after 5 attempts"
+              exit 1
+            fi
+            sleep $((attempt * 3))
+          done
 
       - name: Verify destination is writable
         env:
