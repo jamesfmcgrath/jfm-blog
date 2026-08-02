@@ -24,13 +24,13 @@ The dev server runs at `http://localhost:4321`.
 
 ## Scripts
 
-| Command | What it does |
-|---|---|
-| `npm run dev` | Local dev server with hot reload |
-| `npm run build` | Static build to `dist/` |
-| `npm run preview` | Serve the built `dist/` output locally |
-| `npm test` | Unit tests + Playwright layout tests (`tests/*.test.mjs`) |
-| `npm run a11y` | `scripts/a11y-check.mjs` — axe accessibility sweep of the built pages, light and dark themes |
+| Command           | What it does                                                                                 |
+| ----------------- | -------------------------------------------------------------------------------------------- |
+| `npm run dev`     | Local dev server with hot reload                                                             |
+| `npm run build`   | Static build to `dist/`                                                                      |
+| `npm run preview` | Serve the built `dist/` output locally                                                       |
+| `npm test`        | Unit tests + Playwright layout tests (`tests/*.test.mjs`)                                    |
+| `npm run a11y`    | `scripts/a11y-check.mjs` — axe accessibility sweep of the built pages, light and dark themes |
 
 ## Project structure
 
