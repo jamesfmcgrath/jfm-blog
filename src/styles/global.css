@@ -102,6 +102,12 @@ pre {
 	margin-block: -0.75rem;
 }
 
+/* Markdown images: scale to the reading column, keep aspect ratio. */
+.prose :where(img) {
+	max-width: 100%;
+	height: auto;
+}
+
 .sr-only {
 	position: absolute !important;
 	width: 1px;

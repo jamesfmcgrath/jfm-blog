@@ -175,3 +175,46 @@ test('content is fluid with 65ch reading measure', async () => {
 		await page.close();
 	});
 });
+
+test('prose images scale within the reading column', async () => {
+	await withPreview(async ({ browser, baseURL }) => {
+		const page = await browser.newPage({ viewport: { width: 375, height: 800 } });
+		await page.goto(`${baseURL}/union-rock/`);
+
+		const img = page.locator('.prose img').first();
+		await img.waitFor({ state: 'visible' });
+		await img.evaluate((el) => {
+			if (el.complete && el.naturalWidth > 0) return;
+			return new Promise((resolve, reject) => {
+				el.addEventListener('load', resolve, { once: true });
+				el.addEventListener('error', () => reject(new Error('image failed to load')), { once: true });
+			});
+		});
+
+		const sizes = await img.evaluate((el) => {
+			const prose = el.closest('.prose');
+			const cs = getComputedStyle(el);
+			return {
+				maxWidth: cs.maxWidth,
+				imgWidth: el.getBoundingClientRect().width,
+				imgHeight: el.getBoundingClientRect().height,
+				proseWidth: prose.getBoundingClientRect().width,
+				naturalWidth: el.naturalWidth,
+				naturalHeight: el.naturalHeight,
+			};
+		});
+		assert.equal(sizes.maxWidth, '100%');
+		assert.ok(
+			sizes.imgWidth <= sizes.proseWidth + 1,
+			`expected img (${sizes.imgWidth}) within prose (${sizes.proseWidth})`,
+		);
+		const expectedRatio = sizes.naturalWidth / sizes.naturalHeight;
+		const actualRatio = sizes.imgWidth / sizes.imgHeight;
+		assert.ok(
+			Math.abs(expectedRatio - actualRatio) < 0.05,
+			`expected aspect ratio ~${expectedRatio}, got ${actualRatio}`,
+		);
+
+		await page.close();
+	});
+});
